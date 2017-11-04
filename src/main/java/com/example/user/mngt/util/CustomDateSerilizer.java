@@ -1,6 +1,7 @@
 package com.example.user.mngt.util;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -13,8 +14,9 @@ public class CustomDateSerilizer extends JsonSerializer<Date> {
 	@Override
 	public void serialize(Date date, JsonGenerator generator, SerializerProvider arg2)
 			throws IOException, JsonProcessingException {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
 		if (date != null) {
-			generator.writeString(date.toString());
+			generator.writeString(formatter.format(date));
 		}
 	}
 

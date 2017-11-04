@@ -35,9 +35,21 @@ public class UserController {
 		return ResponseEntity.ok(service.getUsers());
 	}
 
+	@GetMapping("/{userId}")
+	public ResponseEntity<?> getUser(@PathVariable int userId) {
+		User user = service.getUser(userId);
+		if (user != null) {
+			return ResponseEntity.ok(user);
+		}
+		Response response = new Response();
+		response.setResMsg("User does't exists !!");
+		response.setUserId(String.valueOf(userId));
+		return ResponseEntity.ok(response);
+	}
+
 	@PostMapping
 	public ResponseEntity<?> createUser(@Valid @RequestBody User user, Errors errors) {
-		if (errors.hasErrors()) {
+		if (errors != null && errors.hasErrors()) {
 			List<ValidationField> errorsList = new ArrayList<ValidationField>();
 			for (ObjectError error : errors.getAllErrors()) {
 				ValidationField field = new ValidationField();

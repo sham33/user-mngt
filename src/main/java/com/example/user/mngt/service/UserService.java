@@ -32,4 +32,8 @@ public class UserService {
 		return repository.getUsers();
 	}
 
+	public User getUser(int userId) {
+		return repository.getUser(userId);
+	}
+
 }

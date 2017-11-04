@@ -64,4 +64,8 @@ public class UserRepository {
 		return users.entrySet();
 	}
 
+	public User getUser(int userId) {
+		return users.get(userId);
+	}
+
 }
