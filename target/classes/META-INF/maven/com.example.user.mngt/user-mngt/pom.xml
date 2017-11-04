@@ -60,7 +60,16 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<!-- Jar file entry point -->
+							<mainClass>com.example.user.mngt.UserMngtApplication</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
 			</plugin>
+
 		</plugins>
 
 	</build>
