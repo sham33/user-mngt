@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,7 +54,7 @@ public class UserController {
 			List<ValidationField> errorsList = new ArrayList<ValidationField>();
 			for (ObjectError error : errors.getAllErrors()) {
 				ValidationField field = new ValidationField();
-				field.setField(error.getObjectName());
+				field.setField(((FieldError) error).getField());
 				field.setMessage(error.getDefaultMessage());
 				field.setCode(error.getCode());
 				errorsList.add(field);
